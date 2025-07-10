@@ -1,6 +1,16 @@
 {
   "scripts": {
     "test": "npx bddgen && npx playwright test",
-    "report": "open ./cucumber-report/index.html"
+    "test2": "npx bddgen && playwright test -ui",
+    "report": "open ./cucumber-report/index.html",
+    "report2": "start ./cucumber-report/index.html",
+    "watch:pw": "npx bddgen && playwright test --ui",
+    "watch:bdd": "nodemon -w ./features -e feature,js,ts --exec \"npx bddgen\""
+  },
+  "devDependencies": {
+    "playwright-bdd": "^8.3.1",
+    "prettier": "3.4.2",
+    "prettier-plugin-gherkin": "^3.1.1",
+    "typescript": "^5.7.2"
   }
 }
