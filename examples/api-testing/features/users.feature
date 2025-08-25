@@ -5,9 +5,9 @@ Feature: Users API
     Then status is 200
     And response has prop "[0].name" = "Leanne Graham"
     And response array contains:
-      ```
-      { "id": 1, "name": "Leanne Graham" }
-      ```
+  ```
+  { "id": 1, "name": "Leanne Graham" }
+  ```
 
   Scenario: get user by id
     When GET "/users/1"
@@ -15,14 +15,21 @@ Feature: Users API
     And response has prop "name" = "Leanne Graham"
     And response has prop "address.city" = "Gwenborough"
     And response object matches:
-      ```
-      { "id": 1, "name": "Leanne Graham", "address": { "city": "Gwenborough" } }
-      ```
+  ```
+  { "id": 1, "name": "Leanne Graham", "address": { "city": "Gwenborough" } }
+  ```
 
   Scenario: create user
     When POST "/users"
-      ```
-      { "name": "New user" }
-      ```
+    ```
+    { "name": "New user" }
+    ```
     Then status is 201
     And response has prop "id" = 11
+
+  Scenario: get user with mock data
+    When GET "/users/1" with mock
+    Then status is 200
+    And response has prop "name" = "Patrice" from mock
+    And response has prop "email" = "patrice@mock.com" from mock
+    And response has prop "address.city" = "MockCity" from mock
