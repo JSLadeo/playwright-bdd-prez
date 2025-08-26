@@ -9,7 +9,7 @@ Feature: Home Page
     Given I am on home page
     When I click link "Get started"
     # intentionally fails
-    Then I see header "About"
+    Then I see header "Installation"
 
   Scenario: Add Instant Pot to Amazon Cart
     Given I am on Amazon homepage
