@@ -19,19 +19,55 @@ Then('I see header {string}', async ({ page }: StepWorld, text: string) => {
 
 Given('I am on Amazon homepage', async ({ page }: StepWorld) => {
   await page.goto('https://www.amazon.com');
+
+  // Fermer le dialog "International Shopping Transition Alert" s'il apparaît
+  try {
+    const dismissButton = page.getByRole('button', { name: 'Dismiss' });
+    await dismissButton.waitFor({ timeout: 3000 });
+    await dismissButton.click();
+  } catch {
+    // Dialog non présent, continuer normalement
+  }
 });
 
 When('I search for {string}', async ({ page }: StepWorld, searchTerm: string) => {
-  await page.getByRole('textbox', { name: 'Search Amazon' }).fill(searchTerm);
-  await page.getByRole('button', { name: 'Go' }).click();
+  // Attendre que la page soit complètement chargée
+  await page.waitForLoadState('networkidle');
+
+  // Localiser le champ de recherche de manière plus robuste
+  const searchBox = page.locator('#twotabsearchtextbox');
+  await searchBox.waitFor({ state: 'visible' });
+  await searchBox.clear();
+  await searchBox.fill(searchTerm);
+
+  // Cliquer sur le bouton de recherche spécifique
+  await page.locator('#nav-search-submit-button').click();
+
+  // Attendre que les résultats se chargent
+  // await page.waitForLoadState('networkidle');
 });
 
 When('I click on product {string}', async ({ page }: StepWorld, productName: string) => {
-  await page.getByRole('link', { name: new RegExp(productName, 'i') }).first().click();
+  // Attendre que les résultats de recherche se chargent
+  await page.waitForSelector('[data-component-type="s-search-result"]', { timeout: 10000 });
+
+  // Chercher le lien du produit qui contient le nom spécifié
+  const productLink = page.getByRole('link', { name: new RegExp(productName, 'i') }).first();
+  await productLink.waitFor({ state: 'visible' });
+  await productLink.click();
+
+  // Attendre que la page produit se charge
+  // await page.waitForLoadState('networkidle');
 });
 
 When('I click {string} button', async ({ page }: StepWorld, buttonName: string) => {
-  await page.getByRole('button', { name: buttonName, exact: true }).click();
+  // Attendre que le bouton soit visible et cliquable
+  const button = page.getByRole('button', { name: buttonName, exact: true });
+  await button.waitFor({ state: 'visible' });
+  await button.click();
+
+  // Attendre que l'action se termine
+  // await page.waitForLoadState('networkidle');
 });
 
 Then('I should see item added to cart confirmation', async ({ page }: StepWorld) => {

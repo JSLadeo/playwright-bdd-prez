@@ -17,7 +17,7 @@ export default defineConfig({
     ['html', { open: 'never' }],
   ],
   use: {
-    headless: false,
+    headless: true,
     screenshot: 'only-on-failure',
   },
   projects: [
@@ -26,7 +26,7 @@ export default defineConfig({
       use: {
         ...devices['Desktop Chrome'],
         launchOptions: {
-          slowMo: 1000,
+          slowMo: 100,
         },
       },
     },

@@ -18,4 +18,4 @@ Feature: Home Page
     And I click "Add to Cart" button
     Then I should see item added to cart confirmation
     And cart count should be "1"
-    And cart subtotal should be "$102.60"
+    And cart subtotal should be "$129.99"

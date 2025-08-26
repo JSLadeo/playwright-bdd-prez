@@ -1,7 +1,8 @@
 {
   "type": "commonjs",
   "scripts": {
-    "test": "npx bddgen && npx playwright test"
+    "test": "npx bddgen && npx playwright test",
+    "testUI": "npx bddgen && npx playwright test --ui"
   },
   "devDependencies": {
     "playwright-bdd": "^8.4.0"
