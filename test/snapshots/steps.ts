@@ -5,7 +5,8 @@ import { createBdd } from 'playwright-bdd';
 const { Given, Then } = createBdd();
 
 Given('I am on example.com', async ({ page }) => {
-  await page.goto(pathToFileURL('example.html').toString());
+  // await page.goto(pathToFileURL('example.html').toString());
+  await page.goto('https://www.google.fr');
 });
 
 Then('snapshot contains text {string}', async ({}, text: string) => {

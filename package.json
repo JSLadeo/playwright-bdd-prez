@@ -8,7 +8,7 @@
     "url": "git+https://github.com/vitalets/playwright-bdd.git"
   },
   "bin": {
-    "bddgen": "./dist/cli/index.js"
+    "bddgen": "dist/cli/index.js"
   },
   "engines": {
     "node": ">=18"
@@ -78,7 +78,7 @@
     "@cucumber/pretty-formatter": "1.0.1",
     "@eslint/js": "^9.28.0",
     "@playwright/experimental-ct-react": "^1.49.1",
-    "@playwright/test": "^1.49.1",
+    "@playwright/test": "^1.54.1",
     "@release-it/keep-a-changelog": "^7.0.0",
     "@types/micromatch": "4.0.9",
     "@types/mime-types": "^3.0.0",
@@ -118,6 +118,18 @@
     "testing",
     "e2e"
   ],
-  "funding": "https://github.com/sponsors/vitalets",
-  "license": "MIT"
+  "funding": {
+    "url": "https://github.com/sponsors/vitalets"
+  },
+  "license": "MIT",
+  "directories": {
+    "doc": "docs",
+    "example": "examples",
+    "test": "tests"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/vitalets/playwright-bdd/issues"
+  },
+  "homepage": "https://github.com/vitalets/playwright-bdd#readme"
 }
