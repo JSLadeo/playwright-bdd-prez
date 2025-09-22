@@ -14,6 +14,8 @@ Then('snapshot contains text {string}', async ({}, text: string) => {
 });
 
 Then('screenshot matches previous one', async ({ page }) => {
+  //Activer le clique sur cookie  "Accepter tout" pour montrer que la verification de l'image marche fonctionne
+  // await page.getByRole('button', { name: 'Tout accepter' }).click();
   await expect(page).toHaveScreenshot({
     maxDiffPixelRatio: 0.02,
   });
