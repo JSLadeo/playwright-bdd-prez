@@ -32,7 +32,7 @@ Given('I am on Amazon homepage', async ({ page }: StepWorld) => {
 
 When('I search for {string}', async ({ page }: StepWorld, searchTerm: string) => {
   // Attendre que la page soit complètement chargée
-  await page.waitForLoadState('networkidle');
+  // await page.waitForLoadState('networkidle');
 
   // Localiser le champ de recherche de manière plus robuste
   const searchBox = page.locator('#twotabsearchtextbox');
@@ -62,7 +62,7 @@ When('I click on product {string}', async ({ page }: StepWorld, productName: str
 
 When('I click {string} button', async ({ page }: StepWorld, buttonName: string) => {
   // Attendre que le bouton soit visible et cliquable
-  const button = page.getByRole('button', { name: buttonName, exact: true });
+  const button = page.getByRole('button', { name: buttonName, exact: true }).first();
   await button.waitFor({ state: 'visible' });
   await button.click();
 
@@ -71,13 +71,13 @@ When('I click {string} button', async ({ page }: StepWorld, buttonName: string) 
 });
 
 Then('I should see item added to cart confirmation', async ({ page }: StepWorld) => {
-  await expect(page.getByText('Added to cart')).toBeVisible();
+  await expect(page.getByText('Added to cart').first()).toBeVisible();
 });
 
 Then('cart count should be {string}', async ({ page }: StepWorld, count: string) => {
-  await expect(page.locator('#nav-cart-count')).toHaveText(count);
+  await expect(page.locator('#nav-cart-count').first()).toHaveText(count);
 });
 
 Then('cart subtotal should be {string}', async ({ page }: StepWorld, amount: string) => {
-  await expect(page.getByText(`Cart Subtotal: ${amount}`)).toBeVisible();
+  await expect(page.getByText(`Cart Subtotal: ${amount}`).first()).toBeVisible();
 });
