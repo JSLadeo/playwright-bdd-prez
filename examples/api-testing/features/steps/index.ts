@@ -121,7 +121,7 @@ Then(
     console.log(`✅ Mock verification: ${keyPath} = ${expectedValue}`);
   },
 );
-toHaveProperty(keyPath, expectedValue);
-    console.log(`✅ Mock verification: ${keyPath} = ${expectedValue}`);
-  },
-);
+// toHaveProperty(keyPath, expectedValue);
+//     console.log(`✅ Mock verification: ${keyPath} = ${expectedValue}`);
+//   },
+// );
